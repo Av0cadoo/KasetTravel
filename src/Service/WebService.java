@@ -1,6 +1,9 @@
+package Service;
+
 import com.sun.jersey.api.container.httpserver.HttpServerFactory;
 import com.sun.net.httpserver.HttpServer;
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
@@ -11,6 +14,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Saint on 11/12/2015.
@@ -23,25 +28,42 @@ public class WebService {
     // The Java method will produce content identified by the MIME Media type "text/plain"
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @JsonProperty("Activities, Date")
+    @JsonProperty("Activities, Date, Regions")
     public Response findPlace(String json) {
         // Return some cliched textual content
-        String activities = "invalid";
-        String date = "invalid";
+        JSONArray activities = new JSONArray();
+        JSONArray date = new JSONArray();
+        JSONArray regions = new JSONArray();
         JSONObject object;
+        List<String> activList = new ArrayList<String>();
+        List<String> dateList = new ArrayList<String>();
+        List<String> regionList = new ArrayList<String>();
         try {
             object = new JSONObject(json);
-            activities = object.getString("Activities");
-            date = object.getString("Date");
+
+            activities = object.getJSONArray("Activities");
+            for (int i = 0; i < activities.length(); i++){
+                JSONObject obj = (JSONObject) activities.get(i);
+                activList.add(obj.getString("name"));
+            }
+
+            date = object.getJSONArray("Date");
+            for (int i = 0; i < date.length(); i++){
+                JSONObject obj = (JSONObject) date.get(i);
+                dateList.add(obj.getString("name"));
+            }
+
+            regions = object.getJSONArray("Regions");
+            for (int i = 0; i < regions.length(); i++){
+                JSONObject obj = (JSONObject) regions.get(i);
+                regionList.add(obj.getString("name"));
+            }
         }
         catch (JSONException e) {
             System.out.print(e);
         }
-
         String result = String.format("{\n" + "\t\"Activity\": \"%s\",\n" +
-                                        "\t\"Date\": \"%s\"\n" + "}", activities, date);
-        System.out.print(result);
-
+                                        "\t\"Date\": \"%s\"\n" + "}", activities, activities);
         return Response.status(200).entity(result).build();
     }
 
