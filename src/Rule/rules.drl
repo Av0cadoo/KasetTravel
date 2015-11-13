@@ -1,7 +1,16 @@
+import Model.PlaceModel;
+global java.util.List resultList;
 
-dialect  "mvel"
-
-rule "rules"
+rule "String"
     when
+        $s:String($s == "john")
     then
+        resultList.add(new PlaceModel("0", "home"));
+end
+
+rule "String2"
+    when
+        $s:String($s == "Fish")
+    then
+        resultList.add(new PlaceModel("0", "Ta le"));
 end

@@ -1,5 +1,6 @@
 package Service;
 
+import Controller.RuleController;
 import com.sun.jersey.api.container.httpserver.HttpServerFactory;
 import com.sun.net.httpserver.HttpServer;
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -62,6 +63,13 @@ public class WebService {
         catch (JSONException e) {
             System.out.print(e);
         }
+
+        RuleController rc = new RuleController();
+        rc.addActivity("");
+        rc.addDate("");
+        rc.addType("");
+
+        rc.exec();
         String result = String.format("{\n" + "\t\"Activity\": \"%s\",\n" +
                                         "\t\"Date\": \"%s\"\n" + "}", activities, activities);
         return Response.status(200).entity(result).build();

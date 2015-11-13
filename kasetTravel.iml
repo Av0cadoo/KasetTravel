@@ -7,7 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Drools-5.4.0" level="project" />
     <orderEntry type="library" name="jax-rs-jersey-1.12" level="project" />
+    <orderEntry type="library" name="org.kie:kie-api:6.2.0.Final" level="project" />
+    <orderEntry type="library" name="org.kie:kie-internal:6.2.0.Final" level="project" />
+    <orderEntry type="library" name="org.drools:drools-compiler:6.2.0.Final" level="project" />
   </component>
 </module>

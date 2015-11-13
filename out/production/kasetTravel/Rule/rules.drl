@@ -1,0 +1,13 @@
+rule "String"
+    when
+        $s:String($s == "john")
+    then
+        System.out.println("sasasa");
+end
+
+rule "String2"
+    when
+        $s:String($s == "Fish")
+    then
+        System.out.println("pai du pla");
+end
