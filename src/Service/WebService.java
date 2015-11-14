@@ -23,7 +23,7 @@ import java.util.List;
  * Created by Saint on 11/12/2015.
  */
 // The Java class will be hosted at the URI path "/api/test"
-@Path("/api/test")
+@Path("/api/query")
 public class WebService {
     // The Java method will process HTTP GET requests
     @POST
@@ -97,7 +97,7 @@ public class WebService {
         server.start();
 
         System.out.println("Server running");
-        System.out.println("Visit: http://localhost:9998/helloworld");
+        System.out.println("Visit: http://localhost:9998/");
         System.out.println("Hit return to stop...");
         System.in.read();
         System.out.println("Stopping server");

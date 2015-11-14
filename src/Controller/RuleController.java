@@ -1,5 +1,6 @@
 package Controller;
 
+import Db.PlaceDbContext;
 import Model.PlaceModel;
 import Model.RuleModel;
 import org.kie.api.runtime.StatelessKieSession;
@@ -20,6 +21,7 @@ public class RuleController {
         ks.setGlobal("resultList", lp);
         ks.setGlobal("ks", ks);
         ks.setGlobal("rc", this);
+        ks.setGlobal("db", PlaceDbContext.getInstance());
     }
 
     public List<PlaceModel> getResult(){
