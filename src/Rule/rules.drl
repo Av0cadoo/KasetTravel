@@ -1,9 +1,11 @@
 import Model.PlaceModel;
 global java.util.List resultList;
+global org.kie.api.runtime.StatelessKieSession ks;
+global Controller.RuleController rc;
 
 rule "String"
     when
-        $s:String($s == "john")
+        $s:String($s == "John")
     then
         resultList.add(new PlaceModel("0", "home"));
 end
@@ -12,5 +14,5 @@ rule "String2"
     when
         $s:String($s == "Fish")
     then
-        resultList.add(new PlaceModel("0", "Ta le"));
+        resultList.add(new PlaceModel("1", "Ta le"));
 end

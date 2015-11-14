@@ -2,7 +2,6 @@ package Controller;
 
 import Model.PlaceModel;
 import Model.RuleModel;
-import org.codehaus.jettison.json.JSONObject;
 import org.kie.api.runtime.StatelessKieSession;
 
 import java.util.ArrayList;
@@ -19,8 +18,13 @@ public class RuleController {
     public RuleController(){
         ks = new RuleModel().getKieSession();
         ks.setGlobal("resultList", lp);
+        ks.setGlobal("ks", ks);
+        ks.setGlobal("rc", this);
     }
 
+    public List<PlaceModel> getResult(){
+        return lp;
+    }
     public void addActivity(String s){
         commands.add(s);
     }
@@ -33,8 +37,7 @@ public class RuleController {
         commands.add(s);
     }
 
-    public JSONObject exec(){
+    public void exec(){
         ks.execute(commands);
-        return new JSONObject();
     }
 }

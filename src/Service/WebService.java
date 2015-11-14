@@ -1,6 +1,7 @@
 package Service;
 
 import Controller.RuleController;
+import Model.PlaceModel;
 import com.sun.jersey.api.container.httpserver.HttpServerFactory;
 import com.sun.net.httpserver.HttpServer;
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -31,7 +32,7 @@ public class WebService {
     @Consumes(MediaType.APPLICATION_JSON)
     @JsonProperty("Activities, Date, Regions")
     public Response findPlace(String json) {
-        // Return some cliched textual content
+
         JSONArray activities = new JSONArray();
         JSONArray date = new JSONArray();
         JSONArray regions = new JSONArray();
@@ -39,6 +40,8 @@ public class WebService {
         List<String> activList = new ArrayList<String>();
         List<String> dateList = new ArrayList<String>();
         List<String> regionList = new ArrayList<String>();
+
+        //Cast JSONArray to string list;
         try {
             object = new JSONObject(json);
 
@@ -64,15 +67,29 @@ public class WebService {
             System.out.print(e);
         }
 
-        RuleController rc = new RuleController();
-        rc.addActivity("");
-        rc.addDate("");
-        rc.addType("");
+        RuleController drools = new RuleController();
 
-        rc.exec();
-        String result = String.format("{\n" + "\t\"Activity\": \"%s\",\n" +
-                                        "\t\"Date\": \"%s\"\n" + "}", activities, activities);
-        return Response.status(200).entity(result).build();
+        //add known list to drools
+        for( String s : activList){
+            drools.addActivity(s);
+        }
+        for( String s : dateList){
+            drools.addActivity(s);
+        }
+        for( String s : regionList){
+            drools.addActivity(s);
+        }
+
+        //Execute drools
+        drools.exec();
+
+        //add to result which respresent in JSONArray
+        JSONArray jsonResultArray = new JSONArray();
+        for( PlaceModel m : drools.getResult()) {
+            jsonResultArray.put(m.getJsonObject());
+        }
+
+        return Response.status(200).entity(jsonResultArray.toString()).build();
     }
 
     public static void main(String[] args) throws IOException {
