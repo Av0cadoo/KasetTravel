@@ -5,7 +5,7 @@ global Controller.RuleController rc;
 
 rule "String"
     when
-        $s:String($s == "John")
+        $s:String($s == "Experience")
     then
          for(int i = 0 ; i < 10 ; i++){
             if (db.findById(i).getAct()==1)
@@ -15,10 +15,21 @@ end
 
 rule "String2"
     when
-        $s:String($s == "Fish")
+        $s:String($s == "Eat")
     then
     for(int i = 0 ; i < 10 ; i++){
     if (db.findById(i).getAct()==2)
+     resultList.add(db.findById(i));
+    }
+
+end
+
+rule "String3"
+    when
+        $s:String($s == "Research")
+    then
+    for(int i = 0 ; i < 10 ; i++){
+    if (db.findById(i).getAct()==3)
      resultList.add(db.findById(i));
     }
 

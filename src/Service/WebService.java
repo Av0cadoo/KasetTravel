@@ -30,16 +30,16 @@ public class WebService {
     // The Java method will produce content identified by the MIME Media type "text/plain"
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @JsonProperty("Activities, Date, Regions")
+    @JsonProperty("Activities, Date, Type")
     public Response findPlace(String json) {
 
         JSONArray activities = new JSONArray();
         JSONArray date = new JSONArray();
-        JSONArray regions = new JSONArray();
+        JSONArray types = new JSONArray();
         JSONObject object;
         List<String> activList = new ArrayList<String>();
         List<String> dateList = new ArrayList<String>();
-        List<String> regionList = new ArrayList<String>();
+        List<String> typeList = new ArrayList<String>();
 
         //Cast JSONArray to string list;
         try {
@@ -57,10 +57,10 @@ public class WebService {
                 dateList.add(obj.getString("name"));
             }
 
-            regions = object.getJSONArray("Regions");
-            for (int i = 0; i < regions.length(); i++){
-                JSONObject obj = (JSONObject) regions.get(i);
-                regionList.add(obj.getString("name"));
+            types = object.getJSONArray("Type");
+            for (int i = 0; i < types.length(); i++){
+                JSONObject obj = (JSONObject) types.get(i);
+                typeList.add(obj.getString("name"));
             }
         }
         catch (JSONException e) {
@@ -74,9 +74,9 @@ public class WebService {
             drools.addActivity(s);
         }
         for( String s : dateList){
-            drools.addActivity(s);
+            drools.addDate(s);
         }
-        for( String s : regionList){
+        for( String s : typeList){
             drools.addType(s);
         }
 

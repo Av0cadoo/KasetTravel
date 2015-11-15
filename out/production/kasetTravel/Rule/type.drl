@@ -7,14 +7,22 @@ global Controller.RuleController rc;
 
 rule "String1"
     when
-        $s:String($s == "top")
+        $s:String($s == "Fish")
     then
         rc.type(1);
 
 end
 rule "String2"
     when
-        $s:String($s == "mid")
+        $s:String($s == "Farm")
+    then
+        rc.type(2);
+
+end
+
+rule "String3"
+    when
+        $s:String($s == "Vegetable")
     then
         rc.type(2);
 
