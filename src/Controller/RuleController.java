@@ -13,19 +13,16 @@ import java.util.List;
  */
 public class RuleController {
     private List<PlaceModel> lp = new ArrayList<PlaceModel>();
+    private List<PlaceModel> lp2 = new ArrayList<PlaceModel>();
     private StatelessKieSession ks;
     List<String> commands = new ArrayList<String>();
-
+    List<String> commands2 = new ArrayList<String>();
     public RuleController(){
-        ks = new RuleModel().getKieSession();
-        ks.setGlobal("resultList", lp);
-        ks.setGlobal("ks", ks);
-        ks.setGlobal("rc", this);
-        ks.setGlobal("db", PlaceDbContext.getInstance());
+
     }
 
     public List<PlaceModel> getResult(){
-        return lp;
+        return lp2;
     }
     public void addActivity(String s){
         commands.add(s);
@@ -36,10 +33,31 @@ public class RuleController {
     }
 
     public void addType(String s){
-        commands.add(s);
+        commands2.add(s);
     }
 
     public void exec(){
+        ks = new RuleModel("Rule/rules.drl").getKieSession();
+        ks.setGlobal("resultList", lp);
+        ks.setGlobal("ks", ks);
+        ks.setGlobal("rc", this);
+        ks.setGlobal("db", PlaceDbContext.getInstance());
         ks.execute(commands);
+
+        ks = new RuleModel("Rule/type.drl").getKieSession();
+        ks.setGlobal("resultList", lp2);
+        ks.setGlobal("ks", ks);
+        ks.setGlobal("rc", this);
+        //ks.setGlobal("db", lp);
+        ks.execute(commands2);
+    }
+    public void type(int x){
+
+        for(int i = 0;i<lp.size();i++){
+
+            if (lp.get(i).getType()==x){
+                lp2.add(lp.get(i));
+            }
+        }
     }
 }

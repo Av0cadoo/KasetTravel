@@ -1,5 +1,5 @@
-import Model.PlaceModel;
 global java.util.List resultList;
+global Db.PlaceDbContext db;
 global org.kie.api.runtime.StatelessKieSession ks;
 global Controller.RuleController rc;
 
@@ -7,12 +7,19 @@ rule "String"
     when
         $s:String($s == "John")
     then
-        resultList.add(new PlaceModel("0", "home"));
+         for(int i = 0 ; i < 10 ; i++){
+            if (db.findById(i).getAct()==1)
+             resultList.add(db.findById(i));
+            }
 end
 
 rule "String2"
     when
         $s:String($s == "Fish")
     then
-        resultList.add(new PlaceModel("1", "Ta le"));
+    for(int i = 0 ; i < 10 ; i++){
+    if (db.findById(i).getAct()==2)
+     resultList.add(db.findById(i));
+    }
+
 end

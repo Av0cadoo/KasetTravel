@@ -77,7 +77,7 @@ public class WebService {
             drools.addActivity(s);
         }
         for( String s : regionList){
-            drools.addActivity(s);
+            drools.addType(s);
         }
 
         //Execute drools

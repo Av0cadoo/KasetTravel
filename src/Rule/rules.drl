@@ -7,12 +7,19 @@ rule "String"
     when
         $s:String($s == "John")
     then
-        resultList.add(db.findById(1));
+         for(int i = 0 ; i < 10 ; i++){
+            if (db.findById(i).getAct()==1)
+             resultList.add(db.findById(i));
+            }
 end
 
 rule "String2"
     when
         $s:String($s == "Fish")
     then
-        resultList.add(db.findById(2));
+    for(int i = 0 ; i < 10 ; i++){
+    if (db.findById(i).getAct()==2)
+     resultList.add(db.findById(i));
+    }
+
 end

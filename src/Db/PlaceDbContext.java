@@ -15,9 +15,20 @@ public class PlaceDbContext{
 
     private PlaceDbContext(){
         placesList = new ArrayList<PlaceModel>();
-        for( int i = 0; i < 10; i++){
-            placesList.add(new PlaceModel(i+"", "place "+1));
-        }
+        placesList.add(new PlaceModel("1", "place "+1, 1, 1));
+        placesList.add(new PlaceModel("2", "place "+2, 2, 1));
+        placesList.add(new PlaceModel("3", "place "+3, 3, 1));
+        placesList.add(new PlaceModel("4", "place "+4, 2, 2));
+        placesList.add(new PlaceModel("5", "place "+5, 1, 2));
+        placesList.add(new PlaceModel("6", "place "+6, 3, 2));
+        placesList.add(new PlaceModel("7", "place "+7, 1, 2));
+        placesList.add(new PlaceModel("8", "place "+8, 2, 3));
+        placesList.add(new PlaceModel("9", "place "+9, 2, 3));
+        placesList.add(new PlaceModel("10", "place "+10, 1, 3));
+
+//        for( int i = 0; i < 10; i++){
+//            placesList.add(new PlaceModel(i+"", "place "+1));
+//        }
     }
 
     public static PlaceDbContext getInstance(){

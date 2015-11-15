@@ -1,0 +1,21 @@
+package Rule;
+global java.util.List resultList;
+global java.util.List db;
+global org.kie.api.runtime.StatelessKieSession ks;
+global Controller.RuleController rc;
+
+
+rule "String1"
+    when
+        $s:String($s == "top")
+    then
+        rc.type(1);
+
+end
+rule "String2"
+    when
+        $s:String($s == "mid")
+    then
+        rc.type(2);
+
+end

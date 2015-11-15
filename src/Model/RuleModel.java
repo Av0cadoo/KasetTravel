@@ -18,10 +18,10 @@ import org.kie.internal.io.ResourceFactory;
 public class RuleModel {
     private StatelessKieSession ksession;
 
-    public RuleModel(){
+    public RuleModel(String drl){
         KieServices ks = KieServices.Factory.get();
         KieFileSystem kfs = ks.newKieFileSystem();
-        kfs.write(ResourceFactory.newClassPathResource("Rule/rules.drl"));
+        kfs.write(ResourceFactory.newClassPathResource(drl));
         KieBuilder kbuilder = ks.newKieBuilder(kfs);
         kbuilder.buildAll();
         if (kbuilder.getResults().hasMessages(Message.Level.ERROR)) {

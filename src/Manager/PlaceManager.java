@@ -12,9 +12,9 @@ public class PlaceManager {
     private List<PlaceModel> places = new ArrayList<PlaceModel>();
 
     public PlaceManager(){
-        for(int i = 0; i < 5; i++){
-            places.add(new PlaceModel(""+i, "Place"+i));
-        }
+//        for(int i = 0; i < 5; i++){
+//            places.add(new PlaceModel(""+i, "Place"+i));
+//        }
     }
 
     public PlaceModel findById(int id){
