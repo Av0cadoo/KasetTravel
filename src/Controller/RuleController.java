@@ -50,16 +50,15 @@ public class RuleController {
         ks.setGlobal("resultList", lp2);
         ks.setGlobal("ks", ks);
         ks.setGlobal("rc", this);
-        //ks.setGlobal("db", lp);
         ks.execute(commands2);
 
         ks = new RuleModel("Rule/date.drl").getKieSession();
         ks.setGlobal("resultList", lp3);
         ks.setGlobal("ks", ks);
         ks.setGlobal("rc", this);
-        //ks.setGlobal("db", lp);
         ks.execute(commands3);
     }
+
     public void type(int x){
 
         for(int i = 0;i<lp.size();i++){
@@ -69,6 +68,7 @@ public class RuleController {
             }
         }
     }
+
     public void date(int x){
         for(int i = 0;i<lp2.size();i++) {
             for (int j = 0; j < lp2.get(i).getDate().length; j++) {

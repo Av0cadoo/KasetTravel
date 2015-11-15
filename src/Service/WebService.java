@@ -1,6 +1,7 @@
 package Service;
 
 import Controller.RuleController;
+import Db.PlaceDbContext;
 import Model.PlaceModel;
 import com.sun.jersey.api.container.httpserver.HttpServerFactory;
 import com.sun.net.httpserver.HttpServer;
@@ -14,6 +15,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,19 +47,19 @@ public class WebService {
         try {
             object = new JSONObject(json);
 
-            activities = object.getJSONArray("Activities");
+            activities = object.getJSONArray("activities");
             for (int i = 0; i < activities.length(); i++){
                 JSONObject obj = (JSONObject) activities.get(i);
                 activList.add(obj.getString("name"));
             }
 
-            date = object.getJSONArray("Date");
+            date = object.getJSONArray("month");
             for (int i = 0; i < date.length(); i++){
                 JSONObject obj = (JSONObject) date.get(i);
                 dateList.add(obj.getString("name"));
             }
 
-            types = object.getJSONArray("Type");
+            types = object.getJSONArray("type");
             for (int i = 0; i < types.length(); i++){
                 JSONObject obj = (JSONObject) types.get(i);
                 typeList.add(obj.getString("name"));
@@ -89,13 +91,14 @@ public class WebService {
             jsonResultArray.put(m.getJsonObject());
         }
 
-        return Response.status(200).entity(jsonResultArray.toString()).build();
+        return Response.status(200).
+                entity(jsonResultArray.toString()).build();
     }
 
     public static void main(String[] args) throws IOException {
         HttpServer server = HttpServerFactory.create("http://localhost:9998/");
         server.start();
-
+        PlaceDbContext context = PlaceDbContext.getInstance();
         System.out.println("Server running");
         System.out.println("Visit: http://localhost:9998/");
         System.out.println("Hit return to stop...");

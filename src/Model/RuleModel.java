@@ -38,4 +38,6 @@ public class RuleModel {
     public StatelessKieSession getKieSession(){
         return this.ksession;
     }
+
+
 }
