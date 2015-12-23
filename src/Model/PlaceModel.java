@@ -19,9 +19,10 @@ public class PlaceModel {
     private String province;
     private String address;
     private String imgUrl;
+    private String product;
     private int[] date;
 
-    public PlaceModel(String id, String name, int act, int type, String region, String province, String address, String imgUrl, int[] date ) {
+    public PlaceModel(String id, String name, int act, int type, String region, String province, String address, String product, String imgUrl, int[] date ) {
         this.id = id;
         this.name = name;
         this.act = act;
@@ -31,6 +32,7 @@ public class PlaceModel {
         this.province = province;
         this.address = address;
         this.imgUrl = imgUrl;
+        this.product = product;
     }
 
     public int getAct(){return this.act;}
@@ -54,6 +56,7 @@ public class PlaceModel {
             json.put("province", this.province);
             json.put("address", this.address);
             json.put("imgUrl", this.imgUrl);
+            json.put("product", this.product);
         }
         catch(JSONException e){
             System.out.println(e);

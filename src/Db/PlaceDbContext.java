@@ -34,7 +34,7 @@ public class PlaceDbContext{
                 for( int i = 0; i < dateInt.length; i++){
                     dateInt[i] = Integer.parseInt(date[i]);
                 }
-                placesList.add(new PlaceModel(attr[0], attr[1], Integer.parseInt(attr[2]), Integer.parseInt(attr[3]), attr[4], attr[5], attr[6], attr[7], dateInt));
+                placesList.add(new PlaceModel(attr[0], attr[1], Integer.parseInt(attr[2]), Integer.parseInt(attr[3]), attr[4], attr[5], attr[6], attr[7],attr[8], dateInt));
 
             }
         } catch (IOException e) {
