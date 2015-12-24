@@ -1,6 +1,7 @@
 package Service;
 
 import Controller.RuleController;
+import Db.PlaceDbContext;
 import Model.PlaceModel;
 import com.sun.jersey.api.container.httpserver.HttpServerFactory;
 import com.sun.net.httpserver.HttpServer;
@@ -30,37 +31,37 @@ public class WebService {
     // The Java method will produce content identified by the MIME Media type "text/plain"
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @JsonProperty("Activities, Date, Regions")
+    @JsonProperty("Activities, Date, Type")
     public Response findPlace(String json) {
 
         JSONArray activities = new JSONArray();
         JSONArray date = new JSONArray();
-        JSONArray regions = new JSONArray();
+        JSONArray types = new JSONArray();
         JSONObject object;
         List<String> activList = new ArrayList<String>();
         List<String> dateList = new ArrayList<String>();
-        List<String> regionList = new ArrayList<String>();
+        List<String> typeList = new ArrayList<String>();
 
         //Cast JSONArray to string list;
         try {
             object = new JSONObject(json);
 
-            activities = object.getJSONArray("Activities");
+            activities = object.getJSONArray("activities");
             for (int i = 0; i < activities.length(); i++){
                 JSONObject obj = (JSONObject) activities.get(i);
                 activList.add(obj.getString("name"));
             }
 
-            date = object.getJSONArray("Date");
+            date = object.getJSONArray("month");
             for (int i = 0; i < date.length(); i++){
                 JSONObject obj = (JSONObject) date.get(i);
                 dateList.add(obj.getString("name"));
             }
 
-            regions = object.getJSONArray("Regions");
-            for (int i = 0; i < regions.length(); i++){
-                JSONObject obj = (JSONObject) regions.get(i);
-                regionList.add(obj.getString("name"));
+            types = object.getJSONArray("type");
+            for (int i = 0; i < types.length(); i++){
+                JSONObject obj = (JSONObject) types.get(i);
+                typeList.add(obj.getString("name"));
             }
         }
         catch (JSONException e) {
@@ -74,10 +75,10 @@ public class WebService {
             drools.addActivity(s);
         }
         for( String s : dateList){
-            drools.addActivity(s);
+            drools.addDate(s);
         }
-        for( String s : regionList){
-            drools.addActivity(s);
+        for( String s : typeList){
+            drools.addType(s);
         }
 
         //Execute drools
@@ -89,13 +90,14 @@ public class WebService {
             jsonResultArray.put(m.getJsonObject());
         }
 
-        return Response.status(200).entity(jsonResultArray.toString()).build();
+        return Response.status(200).
+                entity(jsonResultArray.toString()).build();
     }
 
     public static void main(String[] args) throws IOException {
         HttpServer server = HttpServerFactory.create("http://localhost:9998/");
         server.start();
-
+        PlaceDbContext context = PlaceDbContext.getInstance();
         System.out.println("Server running");
         System.out.println("Visit: http://localhost:9998/");
         System.out.println("Hit return to stop...");

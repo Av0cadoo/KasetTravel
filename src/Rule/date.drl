@@ -1,0 +1,106 @@
+package Rule;
+global java.util.List resultList;
+global java.util.List db;
+global org.kie.api.runtime.StatelessKieSession ks;
+global Controller.RuleController rc;
+
+rule "date"
+    when
+        $s:String($s == "1")
+    then
+        rc.date(1);
+
+end
+rule "date2"
+    when
+        $s:String($s == "2")
+    then
+        rc.date(2);
+
+end
+
+rule "date3"
+    when
+        $s:String($s == "3")
+    then
+        rc.date(3);
+
+end
+
+rule "date4"
+    when
+        $s:String($s == "4")
+    then
+        rc.date(4);
+
+end
+
+rule "date5"
+    when
+        $s:String($s == "5")
+    then
+        rc.date(5);
+
+end
+
+rule "date6"
+    when
+        $s:String($s == "6")
+    then
+        rc.date(6);
+
+end
+
+rule "date7"
+    when
+        $s:String($s == "7")
+    then
+        rc.date(7);
+
+end
+
+rule "date8"
+    when
+        $s:String($s == "8")
+    then
+        rc.date(8);
+
+end
+
+rule "date9"
+    when
+        $s:String($s == "9")
+    then
+        rc.date(9);
+
+end
+
+rule "date10"
+    when
+        $s:String($s == "10")
+    then
+        rc.date(10);
+
+end
+
+rule "date11"
+    when
+        $s:String($s == "11")
+    then
+        rc.date(11);
+
+end
+
+rule "date12"
+    when
+        $s:String($s == "12")
+    then
+        rc.date(12);
+
+end
+
+
+
+
+
+

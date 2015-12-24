@@ -1,3 +1,4 @@
+import Model.PlaceModel;
 global java.util.List resultList;
 global Db.PlaceDbContext db;
 global org.kie.api.runtime.StatelessKieSession ks;
@@ -5,14 +6,23 @@ global Controller.RuleController rc;
 
 rule "String"
     when
-        $s:String($s == "John")
+        $s:String($s == "real")
     then
-        resultList.add(db.findById(1));
+        for(PlaceModel m : db.findByActivity(1)) resultList.add(m);
 end
 
 rule "String2"
     when
-        $s:String($s == "Fish")
+        $s:String($s == "eat")
     then
-        resultList.add(db.findById(2));
+        for(PlaceModel m : db.findByActivity(2)) resultList.add(m);
+
+end
+
+rule "String3"
+    when
+        $s:String($s == "research")
+    then
+        for(PlaceModel m : db.findByActivity(3)) resultList.add(m);
+
 end

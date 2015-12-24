@@ -1,0 +1,37 @@
+package Rule;
+global java.util.List resultList;
+global java.util.List db;
+global org.kie.api.runtime.StatelessKieSession ks;
+global Controller.RuleController rc;
+
+
+rule "String1"
+    when
+        $s:String($s == "fruit")
+    then
+        rc.type(1);
+
+end
+rule "String2"
+    when
+        $s:String($s == "industry")
+    then
+        rc.type(2);
+
+end
+
+rule "String3"
+    when
+        $s:String($s == "livestock")
+    then
+        rc.type(2);
+
+end
+
+rule "String4"
+    when
+        $s:String($s == "fishery")
+    then
+        rc.type(2);
+
+end

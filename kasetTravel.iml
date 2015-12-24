@@ -11,5 +11,7 @@
     <orderEntry type="library" name="org.kie:kie-api:6.2.0.Final" level="project" />
     <orderEntry type="library" name="org.kie:kie-internal:6.2.0.Final" level="project" />
     <orderEntry type="library" name="org.drools:drools-compiler:6.2.0.Final" level="project" />
+    <orderEntry type="library" name="slf4j-nop-1.7.13" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.38-bin" level="project" />
   </component>
 </module>
