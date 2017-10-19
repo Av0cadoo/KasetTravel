@@ -1,15 +1,16 @@
-
+KasetTravel
+=======
 TYPE
 
-real = 1
-eat = 2
-research = 3
+Real = 1
+Eat = 2
+Research = 3
 
 
 **********
 ACTIVITY
 
-fruit = 1
-industry = 2
-livestock = 3
-fishery = 4
+Fruit = 1
+Industry = 2
+Livestock = 3
+Fishery = 4
